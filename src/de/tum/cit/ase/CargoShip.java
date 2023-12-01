@@ -19,12 +19,12 @@ public class CargoShip {
 
     /**
      * This method is used to load a container onto the ship.
-     * It checks if the ship is empty or if the passed container's content type matches the type of the containers already on the ship.
+     * It checks if the number of containers on the ship is less than the capacity.
      * If the check passes, the container is added to the ship.
      * If the check fails, an IllegalArgumentException is thrown.
      *
      * @param container the container to be loaded onto the ship
-     * @throws IllegalArgumentException if the container's content type does not match the type of the containers already on the ship
+     * @throws IllegalArgumentException if the ship was full
      */
     // TODO 1.2: Add a method to load a container onto the ship
 
