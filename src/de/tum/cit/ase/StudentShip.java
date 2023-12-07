@@ -24,10 +24,17 @@ public class StudentShip extends ContainerShip {
      * Removes a student from the ship.
      *
      * @param student the student to be removed
-     * @throws StudentNotFoundException if the student is not found on the ship
+     * @throws  if the student is not found on the ship
      */
-    public void throwStudentOut(Student student) {
+    public void throwStudentOut(Student student) throws StudentTypeNotFound {
         // TODO 2.1: create the StudentNotFoundException and implement this method
+        if (students.contains(student)){
+            students.remove(student);
+        }
+        else {
+            throw new StudentTypeNotFound();
+        }
+
     }
 
     /**
@@ -40,6 +47,18 @@ public class StudentShip extends ContainerShip {
     // Every other student type should throw a StudentTypeNotFound exception.
     public void rolePlay(Student student) {
         // TODO 2.2: implement this method
+        if (student instanceof BusinessStudent){
+            BusinessStudent businessStudent = (BusinessStudent)student;
+            businessStudent.doBusiness();
+        }
+        else if (student instanceof ComputerScienceStudent) {
+            ComputerScienceStudent computerScienceStudent= (ComputerScienceStudent) student;
+            computerScienceStudent.takeShower();
+
+        }
+        else{
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
