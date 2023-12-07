@@ -1,14 +1,21 @@
 package de.tum.cit.ase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class represents a CargoShip that can carry containers of a specific type.
  * It extends the Container class.
  *
- * @param <T> the type of the content that the containers of this ship can carry
+ *
  */
 // TODO 1.1: Make this class extend the Container class, and use generics to specify the type of the content that the containers of this ship can carry
-public class CargoShip {
+public class CargoShip<T> extends ContainerShip<T>  {
+
+
     // TODO 1.1: Add a private field to store the containers that are currently on the ship
+    private List<Container<T>> containers;
+
 
     /**
      * Constructor for the CargoShip class.
@@ -16,6 +23,21 @@ public class CargoShip {
      * Initializes the containers list.
      */
     // TODO 1.1: Add a constructor that initializes the containers list
+
+    public CargoShip() {
+        super(100,ShipType.CARGO);
+        this.containers=new ArrayList<>();
+
+
+    }
+
+    public List<Container<T>> getContainers() {
+        return containers;
+    }
+
+    public void setContainers(List<Container<T>> containers) {
+        this.containers = containers;
+    }
 
     /**
      * This method is used to load a container onto the ship.
@@ -27,6 +49,14 @@ public class CargoShip {
      * @throws IllegalArgumentException if the ship was full
      */
     // TODO 1.2: Add a method to load a container onto the ship
+    public void load(Container<T> container){
+        if(containers.size()<super.capacity){
+            containers.add(container);
+        }
+        else {
+            throw new IllegalArgumentException();
+        }
+    }
 
     /**
      * This method is used to unload a container from the ship.
@@ -38,4 +68,11 @@ public class CargoShip {
      * @throws IllegalStateException if the ship is empty
      */
     // TODO 1.3: Add a method to unload a container from the ship
+    public Container<T> unload(){
+
+        if (containers.isEmpty()){
+            throw new IllegalArgumentException();
+        }
+        else return containers.remove(containers.size()-1);
+    }
 }
