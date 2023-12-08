@@ -26,13 +26,13 @@ public class StudentShip extends ContainerShip {
      * @param student the student to be removed
      * @throws  if the student is not found on the ship
      */
-    public void throwStudentOut(Student student) throws StudentTypeNotFound {
+    public void throwStudentOut(Student student) throws StudentNotFoundException {
         // TODO 2.1: create the StudentNotFoundException and implement this method
         if (students.contains(student)){
             students.remove(student);
         }
         else {
-            throw new StudentTypeNotFound();
+            throw new StudentNotFoundException();
         }
 
     }
@@ -45,7 +45,7 @@ public class StudentShip extends ContainerShip {
      */
     // Note: this method only covers the BusinessStudent and ComputerScienceStudent student types.
     // Every other student type should throw a StudentTypeNotFound exception.
-    public void rolePlay(Student student) {
+    public void rolePlay(Student student) throws StudentTypeNotFound {
         // TODO 2.2: implement this method
         if (student instanceof BusinessStudent){
             BusinessStudent businessStudent = (BusinessStudent)student;
@@ -54,10 +54,22 @@ public class StudentShip extends ContainerShip {
         else if (student instanceof ComputerScienceStudent) {
             ComputerScienceStudent computerScienceStudent= (ComputerScienceStudent) student;
             computerScienceStudent.takeShower();
+            //or ((ComputerScienceStudent) student).takeShower(); just this
+            /**
+             * switch (student.getClass().getSimpleName()) {
+             *             case "BusinessStudent":
+             *                 ((BusinessStudent) student).doBusiness();
+             *                 break;
+             *             case "ComputerScienceStudent":
+             *                 ((ComputerScienceStudent) student).takeShower();
+             *                 break;
+             *             default:
+             *                 throw new StudentTypeNotFound("Student type not recognized for role-play.");
+             */
 
         }
         else{
-            throw new IllegalArgumentException();
+            throw new StudentTypeNotFound();
         }
     }
 
