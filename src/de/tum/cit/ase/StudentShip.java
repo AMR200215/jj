@@ -26,13 +26,13 @@ public class StudentShip extends ContainerShip {
      * @param student the student to be removed
      * @throws  if the student is not found on the ship
      */
-    public void throwStudentOut(Student student) throws StudentNotFoundException {
+    public void throwStudentOut(Student student) throws StudentTypeNotFound {
         // TODO 2.1: create the StudentNotFoundException and implement this method
         if (students.contains(student)){
             students.remove(student);
         }
         else {
-            throw new StudentNotFoundException();
+            throw new StudentTypeNotFound();
         }
 
     }
