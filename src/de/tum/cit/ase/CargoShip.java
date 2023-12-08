@@ -75,7 +75,7 @@ public class CargoShip<T> extends ContainerShip<T>  {
     public Container<T> unload(){
 
         if (containers.isEmpty()){
-            throw new IllegalArgumentException();
+            throw new IllegalStateException();
         }
         else return containers.remove(containers.size()-1);
     }
