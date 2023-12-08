@@ -23,6 +23,10 @@ public class CargoShip<T> extends ContainerShip<T>  {
      * Initializes the containers list.
      */
     // TODO 1.1: Add a constructor that initializes the containers list
+  public CargoShip(int capacity, ShipType shipType){
+        super(capacity,shipType);
+        this.containers=new ArrayList<>();
+    }
 
     public CargoShip() {
         super(100,ShipType.CARGO);
